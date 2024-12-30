@@ -1,23 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../RideDetailsScreen/ride_details_page.dart';
 
 class SearchResultModel extends StatelessWidget {
   String profilePicture;
   String driver;
   String phoneNumber;
+  bool isHistoryPage;
+  bool? isCompleted;
 
-  SearchResultModel(
-      {super.key,
-      required this.profilePicture,
-      required this.driver,
-      required this.phoneNumber});
+  SearchResultModel({
+    super.key,
+    required this.profilePicture,
+    required this.driver,
+    required this.phoneNumber,
+    required this.isCompleted,
+    required this.isHistoryPage,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20),
-      height: 300,
+      height: 310,
       width: 400,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -152,9 +154,40 @@ class SearchResultModel extends StatelessWidget {
                             Text(phoneNumber),
                             SizedBox(
                               height: 10,
-                            )
+                            ),
                           ],
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 80),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Rating'),
+                      Container(
+                        child: isHistoryPage
+                            ? Container(
+                                decoration: isCompleted!
+                                    ? BoxDecoration(
+                                        color: Colors.green,
+                                      )
+                                    : BoxDecoration(
+                                        color: Colors.red,
+                                      ),
+                                child: isCompleted!
+                                    ? Text(
+                                        'Completed',
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    : Text(
+                                        'Cancelled',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                              )
+                            : null,
                       ),
                     ],
                   ),

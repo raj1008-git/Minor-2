@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'HistoryScreen/history_page.dart';
 import 'ProfileScreen/profile_page.dart';
@@ -117,26 +115,28 @@ class _MainScaffoldState extends State<MainScaffold> {
     return Scaffold(
       backgroundColor: customColor,
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        toolbarHeight: 120,
-        elevation: checkCallback == 1 ? 10 : 0,
-        // backgroundColor: customColor,
-        backgroundColor: Colors.white70,
-        leadingWidth: 100,
-        title: checkCallback == 1
-            ? const Text('Leaving From')
-            : checkCallback == 2
-                ? const Text('Going To')
-                : null,
-        leading: customColor == Colors.blue
-            ? Icon(icon)
-            : Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Image.asset(
-                  'assets/icons/logo_icon.jpg',
-                ),
-              ),
-      ),
+      appBar: _selectedIndex == 2
+          ? null
+          : AppBar(
+              toolbarHeight: 120,
+              elevation: checkCallback == 1 ? 10 : 0,
+              // backgroundColor: customColor,
+              backgroundColor: Colors.white70,
+              leadingWidth: 100,
+              title: checkCallback == 1
+                  ? const Text('Leaving From')
+                  : checkCallback == 2
+                      ? const Text('Going To')
+                      : null,
+              leading: customColor == Colors.blue
+                  ? Icon(icon)
+                  : Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Image.asset(
+                        'assets/icons/logo_icon.jpg',
+                      ),
+                    ),
+            ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) => setState(() {
           _selectedIndex = index;
